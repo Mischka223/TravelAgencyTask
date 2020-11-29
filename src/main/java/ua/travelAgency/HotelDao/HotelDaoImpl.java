@@ -1,5 +1,6 @@
 package ua.travelAgency.HotelDao;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -11,22 +12,21 @@ import java.util.List;
 
 @Repository
 public class HotelDaoImpl implements HotelDaoInterface {
-
     private static final Logger logger = LoggerFactory.getLogger(HotelDaoImpl.class);
 
     private final SessionFactory sessionFactory;
-    private Session session;
+
     public HotelDaoImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
     protected Session getCurrentSession() {
-        if (session == null){
-            session=sessionFactory.openSession();
-
+        try {
+            return this.sessionFactory.getCurrentSession();
+        } catch (HibernateException e) {
+            logger.error(e.getMessage(), e);
+            return this.sessionFactory.openSession();
         }
-        return session;
-
     }
 
     @Override
@@ -45,11 +45,13 @@ public class HotelDaoImpl implements HotelDaoInterface {
     @Override
     public void removeHotel(int id) {
         Session session = getCurrentSession();
-        Hotel hotel = session.load(Hotel.class,id);
+        session.getTransaction().begin();
+        Hotel hotel = session.load(Hotel.class, id);
 
-        if (hotel != null){
+        if (hotel != null) {
             session.remove(hotel);
         }
+        session.getTransaction().commit();
         System.out.println("Hotel successfully delete. Hotel details: " + hotel);
     }
 

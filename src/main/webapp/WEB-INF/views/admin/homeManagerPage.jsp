@@ -12,8 +12,6 @@
     <title>Home</title>
 </head>
 <body>
-
-</div>
 <h1>Home</h1>
 </body>
 </html>

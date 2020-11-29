@@ -15,17 +15,22 @@
             <th width="120">Name</th>
             <th width="100">Country</th>
             <th width="130">description</th>
+            <th width="100">Delete</th>
+            <th width="100">Edit</th>
         </tr>
         <c:forEach items="${hotels}" var="hotel">
-            <td>
-
             <td><c:out value="${hotel.id}"/></td>
             <td><a href="/admin/hotel/<c:out value="${hotel.id}"/>"><c:out value="${hotel.name}"/></a></td>
             <td><c:out value="${hotel.country}"/></td>
             <td><c:out value="${hotel.description}"/></td>
             <td>
                 <form action="/admin/delete/hotel/<c:out value="${hotel.id}"/>" method="post">
-                    <button type="submit" name="your_name" value="your_value" class="btn-link">Delete</button>
+                    <button type="submit"  class="btn-link">Delete</button>
+                </form>
+            </td>
+            <td>
+                <form action="/admin/edit/hotel/<c:out value="${hotel.id}"/>" method="get">
+                    <button type="submit" name="your_name" value="your_value" class="btn-link">Edit</button>
                 </form>
             </td>
             </tr>

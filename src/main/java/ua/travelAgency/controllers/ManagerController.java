@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ua.travelAgency.HotelDao.HotelDaoInterface;
+import ua.travelAgency.HotelService.HotelServiceInterface;
 import ua.travelAgency.model.Hotel;
 
 
@@ -11,22 +12,22 @@ import ua.travelAgency.model.Hotel;
 @RequestMapping("/admin")
 public class ManagerController {
 
-    private final HotelDaoInterface hotelDao;
+    private final HotelServiceInterface hotelServiceInterface;
 
-    public ManagerController(HotelDaoInterface hotelDao) {
-        this.hotelDao = hotelDao;
+    public ManagerController(HotelServiceInterface hotelServiceInterface) {
+        this.hotelServiceInterface = hotelServiceInterface;
     }
 
 //Основна сторінка
     @GetMapping("/home")
     public String HomePage(){
-        return "admin/HomePageManager";
+        return "admin/HomeManagerPage   ";
     }
 
 //Сторінка всіх готелів
  @GetMapping("/list/hotel")
     public String listHotel(Model model){
-        model.addAttribute("hotels", hotelDao.listHotels());
+        model.addAttribute("hotels", hotelServiceInterface.listHotels());
         return "admin/allHotel";
     }
 
@@ -41,14 +42,14 @@ public class ManagerController {
 //Пост метод для шаблону
     @PostMapping("/create/hotel")
     public String createNewHotel(@ModelAttribute("hotel") Hotel hotel){
-        hotelDao.addHotel(hotel);
+            hotelServiceInterface.addHotel(hotel);
         return "redirect:/home";
     }
 
 //Видалення готелю по id
     @PostMapping("/delete/hotel/{id}")
     public String deleteHotel(@PathVariable("id") int id){
-        hotelDao.removeHotel(id);
+        hotelServiceInterface.removeHotel(id);
         return "redirect:/admin/list/hotel";
 
     }
@@ -56,8 +57,21 @@ public class ManagerController {
 //Окремий готель
     @GetMapping("/hotel/{id}")
     public String showHotel(@PathVariable("id") int id,Model model){
-        model.addAttribute("hotel",hotelDao.getHotelById(id));
+        model.addAttribute("hotel",hotelServiceInterface.getHotelById(id));
         return "admin/showHotel";
+    }
+//шаблон для зміни готелю
+    @GetMapping("/edit/hotel/{id}")
+    public String editHotel(@PathVariable("id") int id,Model model){
+        model.addAttribute("hotel",hotelServiceInterface.getHotelById(id));
+        return "admin/editHotel";
+    }
+//Зміна параметрів готелю
+    @PostMapping("/edit/hotel/{id}")
+    public String updateHotel(@PathVariable("id")int id,
+                              @ModelAttribute("hotel") Hotel hotel){
+        hotelServiceInterface.updateHotel(id);
+        return "redirect:/admin/list/hotel";
     }
 
 }

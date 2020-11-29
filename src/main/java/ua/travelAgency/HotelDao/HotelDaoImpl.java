@@ -38,20 +38,24 @@ public class HotelDaoImpl implements HotelDaoInterface {
     }
 
     @Override
-    public void updateHotel(Hotel hotel) {
-
+    public Hotel updateHotel(int id) {
+        Session session = getCurrentSession();
+        Hotel hotel = session.load(Hotel.class,id);
+        session.update(hotel);
+        System.out.println("Book successfully update.  Book details " + hotel);
+        return hotel;
     }
 
     @Override
     public void removeHotel(int id) {
         Session session = getCurrentSession();
-        session.getTransaction().begin();
+       // session.getTransaction().begin();
         Hotel hotel = session.load(Hotel.class, id);
 
         if (hotel != null) {
             session.remove(hotel);
         }
-        session.getTransaction().commit();
+        //session.getTransaction().commit();
         System.out.println("Hotel successfully delete. Hotel details: " + hotel);
     }
 

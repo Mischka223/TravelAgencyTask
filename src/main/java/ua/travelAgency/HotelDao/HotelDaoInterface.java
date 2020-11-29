@@ -6,9 +6,13 @@ import java.util.List;
 
 public interface HotelDaoInterface {
     public Hotel addHotel(Hotel hotel);
-    public Hotel updateHotel(int id );
+
+    public Hotel updateHotel(Hotel hotel);
+
     public void removeHotel(int id);
-    public  Hotel getHotelById(int id);
+
+    public Hotel getHotelById(int id);
+
     public List<Hotel> listHotels();
 
 }

@@ -18,59 +18,62 @@ public class ManagerController {
         this.hotelServiceInterface = hotelServiceInterface;
     }
 
-//Основна сторінка
+    //Основна сторінка
     @GetMapping("/home")
-    public String HomePage(){
+    public String HomePage() {
         return "admin/HomeManagerPage   ";
     }
 
-//Сторінка всіх готелів
- @GetMapping("/list/hotel")
-    public String listHotel(Model model){
+    //Сторінка всіх готелів
+    @GetMapping("/list/hotel")
+    public String listHotel(Model model) {
         model.addAttribute("hotels", hotelServiceInterface.listHotels());
         return "admin/allHotel";
     }
 
-//Сторінка шаблону готелю
+    //Сторінка шаблону готелю
     @GetMapping("/create/hotel")
-    public String createHotel(Model model){
-        model.addAttribute("hotel",new Hotel());
+    public String createHotel(Model model) {
+        model.addAttribute("hotel", new Hotel());
         System.out.println("create new hotel" + model);
         return "admin/createHotel";
     }
 
-//Пост метод для шаблону
+    //Пост метод для шаблону
     @PostMapping("/create/hotel")
-    public String createNewHotel(@ModelAttribute("hotel") Hotel hotel){
-            hotelServiceInterface.addHotel(hotel);
+    public String createNewHotel(@ModelAttribute("hotel") Hotel hotel) {
+        hotelServiceInterface.addHotel(hotel);
         return "redirect:/home";
     }
 
-//Видалення готелю по id
+    //Видалення готелю по id
     @PostMapping("/delete/hotel/{id}")
-    public String deleteHotel(@PathVariable("id") int id){
+    public String deleteHotel(@PathVariable("id") int id) {
         hotelServiceInterface.removeHotel(id);
         return "redirect:/admin/list/hotel";
 
     }
 
-//Окремий готель
+    //Окремий готель
     @GetMapping("/hotel/{id}")
-    public String showHotel(@PathVariable("id") int id,Model model){
-        model.addAttribute("hotel",hotelServiceInterface.getHotelById(id));
+    public String showHotel(@PathVariable("id") int id, Model model) {
+        model.addAttribute("hotel", hotelServiceInterface.getHotelById(id));
         return "admin/showHotel";
     }
-//шаблон для зміни готелю
+
+    //шаблон для зміни готелю
     @GetMapping("/edit/hotel/{id}")
-    public String editHotel(@PathVariable("id") int id,Model model){
-        model.addAttribute("hotel",hotelServiceInterface.getHotelById(id));
+    public String editHotel(@PathVariable("id") int id, Model model) {
+        model.addAttribute("hotel", hotelServiceInterface.getHotelById(id));
         return "admin/editHotel";
     }
-//Зміна параметрів готелю
+
+    //Зміна параметрів готелю
     @PostMapping("/edit/hotel/{id}")
-    public String updateHotel(@PathVariable("id")int id,
-                              @ModelAttribute("hotel") Hotel hotel){
-        hotelServiceInterface.updateHotel(id);
+    public String updateHotel(@PathVariable("id") int id,
+                              @ModelAttribute("hotel") Hotel hotel) {
+        hotelServiceInterface.getHotelById(id);
+        hotelServiceInterface.updateHotel(hotel);
         return "redirect:/admin/list/hotel";
     }
 

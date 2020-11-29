@@ -1,10 +1,7 @@
 package ua.travelAgency.HotelDao;
 
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import ua.travelAgency.model.Hotel;
 
@@ -12,7 +9,6 @@ import java.util.List;
 
 @Repository
 public class HotelDaoImpl implements HotelDaoInterface {
-    private static final Logger logger = LoggerFactory.getLogger(HotelDaoImpl.class);
 
     private final SessionFactory sessionFactory;
 
@@ -21,12 +17,9 @@ public class HotelDaoImpl implements HotelDaoInterface {
     }
 
     protected Session getCurrentSession() {
-        try {
-            return this.sessionFactory.getCurrentSession();
-        } catch (HibernateException e) {
-            logger.error(e.getMessage(), e);
-            return this.sessionFactory.openSession();
-        }
+        this.sessionFactory.openSession();
+        return this.sessionFactory.getCurrentSession();
+
     }
 
     @Override
@@ -38,9 +31,8 @@ public class HotelDaoImpl implements HotelDaoInterface {
     }
 
     @Override
-    public Hotel updateHotel(int id) {
+    public Hotel updateHotel(Hotel hotel) {
         Session session = getCurrentSession();
-        Hotel hotel = session.load(Hotel.class,id);
         session.update(hotel);
         System.out.println("Book successfully update.  Book details " + hotel);
         return hotel;
@@ -49,13 +41,11 @@ public class HotelDaoImpl implements HotelDaoInterface {
     @Override
     public void removeHotel(int id) {
         Session session = getCurrentSession();
-       // session.getTransaction().begin();
         Hotel hotel = session.load(Hotel.class, id);
 
         if (hotel != null) {
             session.remove(hotel);
         }
-        //session.getTransaction().commit();
         System.out.println("Hotel successfully delete. Hotel details: " + hotel);
     }
 

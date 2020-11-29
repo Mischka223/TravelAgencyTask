@@ -11,20 +11,23 @@ public class Apartment {
     private int id;
     @Column(name = "name")
     private String name;
-    @Column(name = "hotel_id")
-    private int hotelId;
     @Column(name = "description")
     private String description;
     @Column(name = "rooms")
     private int rooms;
 
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "hotel_id")
+    private Hotel hotel;
 
     public Apartment(String name, String description, int rooms) {
         this.name = name;
         this.description = description;
         this.rooms = rooms;
     }
-    public Apartment(){}
+
+    public Apartment() {
+    }
 
     public String getName() {
         return name;

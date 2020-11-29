@@ -6,7 +6,7 @@
     <title>HelloWorld page</title>
 </head>
 <body>
-<p>vf</p>
+<p>sdfsdffs</p>
 
 <c:if test="${!empty hotels}">
     <table border="1">

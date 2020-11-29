@@ -4,24 +4,21 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import ua.travelAgency.HotelDao.HotelDaoInterface;
-import ua.travelAgency.config.HibernateConfig;
-import ua.travelAgency.config.SpringConfig;
+import ua.travelAgency.HotelDao.HotelDao;
 import ua.travelAgency.model.Hotel;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 public class HotelCRUDTest {
 
     @Autowired
-    private HotelDaoInterface hotelDaoInterface;
+    private HotelDao hotelDao;
 
     @Test
     public void addHotelTest(){
         Hotel hotelToSave = prepareHotel();
-        Hotel hotel = hotelDaoInterface.addHotel(hotelToSave);
-        Hotel foundHotel = hotelDaoInterface.getHotelById(hotel.getId());
+        Hotel hotel = hotelDao.addHotel(hotelToSave);
+        Hotel foundHotel = hotelDao.getHotelById(hotel.getId());
         Assert.assertNotNull(foundHotel);
     }
 

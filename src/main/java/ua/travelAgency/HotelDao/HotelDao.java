@@ -4,7 +4,7 @@ import ua.travelAgency.model.Hotel;
 
 import java.util.List;
 
-public interface HotelDaoInterface {
+public interface HotelDao {
     public Hotel addHotel(Hotel hotel);
 
     public Hotel updateHotel(Hotel hotel);

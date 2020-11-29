@@ -8,7 +8,7 @@ import ua.travelAgency.model.Hotel;
 import java.util.List;
 
 @Repository
-public class HotelDaoImpl implements HotelDaoInterface {
+public class HotelDaoImpl implements HotelDao {
 
     private final SessionFactory sessionFactory;
 

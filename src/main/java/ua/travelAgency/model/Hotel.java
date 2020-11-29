@@ -18,6 +18,8 @@ public class Hotel {
     @Column(name = "country")
     private String country;
 
+    @OneToMany(mappedBy = "hotel", orphanRemoval = true)
+    private List<Apartment> apartmentList;
 
     public Hotel(String name, String description, String country) {
         this.name = name;
@@ -25,7 +27,8 @@ public class Hotel {
         this.country = country;
     }
 
-    public Hotel(){}
+    public Hotel() {
+    }
 
     public int getId() {
         return id;

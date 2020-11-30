@@ -1,7 +1,9 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+
 <html>
 <head>
-    <title>add Apartment</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>create Apartment</title>
 </head>
 <body>
 <style>
@@ -43,10 +45,10 @@
             <input type="text" name="name" placeholder="Enter apartment name" class="form-control">
         </label><br>
         <label>
-            <input type="text" name="rooms" placeholder="Enter apartment " class="form-control">
+            <input type="text" name="description" placeholder="Enter apartment rooms " class="form-control">
         </label><br>
         <label>
-            <input type="text" name="description" placeholder="Enter apartment description" class="form-control">
+            <input type="text" name="rooms" placeholder="Enter apartment description" class="form-control">
         </label><br>
         <button type="submit" class="btn btn-success">Add apartment</button>
     </form>

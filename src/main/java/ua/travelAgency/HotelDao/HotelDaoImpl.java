@@ -87,7 +87,6 @@ public class HotelDaoImpl implements HotelDao {
         Hotel hotel = session.load(Hotel.class, id);
         session.save(apartment);
         hotel.getApartmentList().add(apartment);
-
         apartment.setHotel(hotel);
         session.save(hotel);
         System.out.println("Apartment successfully create. Apartment details:  " + apartment);
@@ -105,6 +104,12 @@ public class HotelDaoImpl implements HotelDao {
         System.out.println("Hotel successfully delete. Hotel details: " + hotel.getApartmentList().get(id));
         return hotel.getApartmentList();
     }
-
+    @Override
+    public List<Apartment> apartmentList(int id){
+        Session session = getCurrentSession();
+        Hotel hotel = session.load(Hotel.class,id);
+        List<Apartment> apartments = hotel.getApartmentList();
+        return apartments;
+    }
 }
 

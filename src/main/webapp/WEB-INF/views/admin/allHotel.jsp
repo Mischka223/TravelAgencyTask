@@ -3,10 +3,10 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>HelloWorld page</title>
+    <title>Hotels</title>
 </head>
 <body>
-<p>sdfsdffs</p>
+
 
 <c:if test="${!empty hotels}">
     <table border="1">
@@ -25,7 +25,7 @@
             <td><c:out value="${hotel.description}"/></td>
             <td>
                 <form action="/admin/delete/hotel/<c:out value="${hotel.id}"/>" method="post">
-                    <button type="submit"  class="btn-link">Delete</button>
+                    <button type="submit" class="btn-link">Delete</button>
                 </form>
             </td>
             <td>

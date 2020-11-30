@@ -59,6 +59,7 @@ public class ManagerController {
     @GetMapping("/hotel/{id}")
     public String showHotel(@PathVariable("id") int id, Model model) {
         model.addAttribute("hotel", hotelService.getHotelById(id));
+        model.addAttribute("apartments",hotelService.apartmentList(id));
         return "admin/showHotel";
     }
 
@@ -92,6 +93,11 @@ public class ManagerController {
         model.addAttribute("hotel",hotelService.getHotelById(id));
         hotelService.createApartment(id,apartment);
         return "redirect:/admin/list/hotel";
+   }
+   @GetMapping("/hotel/{id}/apartments")
+    public String apartmentList(@PathVariable("id") int id,Model model){
+        model.addAttribute("apartments",hotelService.apartmentList(id));
+        return "admin/allApartmentInHotel";
    }
 
 }

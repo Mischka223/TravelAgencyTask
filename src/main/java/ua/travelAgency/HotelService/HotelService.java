@@ -21,4 +21,6 @@ public interface HotelService {
 
     public List<Country> countryList();
 
+    public List<Apartment> apartmentList(int id);
+
 }

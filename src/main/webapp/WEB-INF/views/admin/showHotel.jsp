@@ -10,9 +10,13 @@
 <br/>
 <br/>
 <br/>
-<c:out value="${hotel.id}"/>
-<c:out value="${hotel.name}"/>
-<c:out value="${hotel.country}"/>
-<c:out value="${hotel.description}"/>
+<p>id: <c:out value="${hotel.id}"/></p>
+<br/>
+<p>name: <c:out value="${hotel.name}"/></p>
+<br/>
+<p>country: <c:out value="${hotel.country}"/></p>
+<br/>
+<p>description: <c:out value="${hotel.description}"/></p>
+<br/>
 </body>
 </html>

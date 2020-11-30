@@ -18,7 +18,7 @@ public class Hotel {
     @Column(name = "country")
     private String country;
 
-    @OneToMany(mappedBy = "hotel", orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "hotel", orphanRemoval = true)
     private List<Apartment> apartmentList;
 
     public Hotel(String name, String description, String country) {

@@ -29,6 +29,14 @@ public class Apartment {
     public Apartment() {
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
@@ -62,7 +70,7 @@ public class Apartment {
     }
 
     @Override
-    public String   toString() {
+    public String toString() {
         return "Apartment{" +
                 "id=" + id +
                 ", name='" + name + '\'' +

@@ -53,4 +53,9 @@ public class HotelServiceImpl implements HotelService {
     public List<Country> countryList() {
         return hotelDao.countryList();
     }
+
+    @Override
+    public List<Apartment> apartmentList(int id){
+        return  hotelDao.apartmentList(id);
+    }
 }

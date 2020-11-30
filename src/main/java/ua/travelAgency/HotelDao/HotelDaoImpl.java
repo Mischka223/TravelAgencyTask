@@ -3,6 +3,8 @@ package ua.travelAgency.HotelDao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
+import ua.travelAgency.model.Apartment;
+import ua.travelAgency.model.Country;
 import ua.travelAgency.model.Hotel;
 
 import java.util.List;
@@ -17,8 +19,11 @@ public class HotelDaoImpl implements HotelDao {
     }
 
     protected Session getCurrentSession() {
-        this.sessionFactory.openSession();
-        return this.sessionFactory.getCurrentSession();
+        Session session = sessionFactory.getCurrentSession();
+        if (session == null) {
+            session = sessionFactory.openSession();
+        }
+        return session;
 
     }
 
@@ -66,4 +71,40 @@ public class HotelDaoImpl implements HotelDao {
         }
         return hotelList;
     }
+
+    @Override
+    public List<Country> countryList() {
+        Session session = getCurrentSession();
+        List<Country> countries = session.createQuery("FROM  Country ").list();
+        for (Country country : countries){
+            System.out.println("Country list : " + country);
+        }
+        return countries;
+    }
+
+    public Apartment createApartment(int id, Apartment apartment) {
+        Session session = getCurrentSession();
+        Hotel hotel = session.load(Hotel.class, id);
+        session.save(apartment);
+        hotel.getApartmentList().add(apartment);
+
+        apartment.setHotel(hotel);
+        session.save(hotel);
+        System.out.println("Apartment successfully create. Apartment details:  " + apartment);
+        return apartment;
+    }
+
+    public List<Apartment> removeApartment(int id) {
+        Session session = getCurrentSession();
+        Hotel hotel = session.load(Hotel.class, id);
+        if (hotel.getApartmentList().get(id) != null) {
+            hotel.getApartmentList().remove(id);
+        }
+        session.save(hotel);
+
+        System.out.println("Hotel successfully delete. Hotel details: " + hotel.getApartmentList().get(id));
+        return hotel.getApartmentList();
+    }
+
 }
+

@@ -62,6 +62,14 @@ public class Hotel {
         this.description = description;
     }
 
+    public List<Apartment> getApartmentList() {
+        return apartmentList;
+    }
+
+    public void setApartmentList(List<Apartment> apartmentList) {
+        this.apartmentList = apartmentList;
+    }
+
     @Override
     public String toString() {
         return "Hotel{" +

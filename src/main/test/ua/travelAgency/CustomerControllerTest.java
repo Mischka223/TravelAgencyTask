@@ -13,8 +13,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.DefaultMockMvcBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import ua.travelAgency.HotelDao.HotelDaoImpl;
+import ua.travelAgency.HotelService.HotelService;
 import ua.travelAgency.config.SpringConfig;
+import ua.travelAgency.model.Apartment;
 import ua.travelAgency.model.Hotel;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -24,8 +25,9 @@ public class CustomerControllerTest {
 
     @Autowired
     private WebApplicationContext wac;
+
     @Autowired
-    private HotelDaoImpl hotelDao;
+    private HotelService hotelService;
     private MockMvc mockMvc;
 
     @Before
@@ -37,19 +39,37 @@ public class CustomerControllerTest {
     @Test
     public void addHotelTest() {
         Hotel hotel = prepareHotel();
-        Hotel hotelToAdd = hotelDao.addHotel(hotel);
-        Hotel foundHotel = hotelDao.getHotelById(hotelToAdd.getId());
+        Hotel hotelToAdd = hotelService.addHotel(hotel);
+        Hotel foundHotel = hotelService.getHotelById(hotelToAdd.getId());
         Assert.assertNotNull(foundHotel);
     }
 
     @Test(expected = ObjectNotFoundException.class)
     public void removeHotelTest() {
         Hotel hotel = prepareHotel();
-        Hotel hotelToAdd = hotelDao.addHotel(hotel);
-        hotelDao.removeHotel(hotelToAdd.getId());
+        Hotel hotelToAdd = hotelService.addHotel(hotel);
+        hotelService.removeHotel(hotelToAdd.getId());
 
-        Hotel foundHotel = hotelDao.getHotelById(hotelToAdd.getId());
+        Hotel foundHotel = hotelService.getHotelById(hotelToAdd.getId());
         Assert.assertNull(foundHotel);
+    }
+
+    @Test
+    public void addApartmentToHotel() {
+        Hotel hotel = prepareHotel();
+        Hotel hotelToAdd = hotelService.addHotel(hotel);
+
+        Apartment apartment = prepareApartment();
+        hotelService.createApartment(hotelToAdd.getId(), apartment);
+
+    }
+
+    private Apartment prepareApartment() {
+        Apartment apartment = new Apartment();
+        apartment.setDescription("Apartment Description");
+        apartment.setName("Apartment Name");
+        apartment.setRooms(3);
+        return apartment;
     }
 
     private Hotel prepareHotel() {

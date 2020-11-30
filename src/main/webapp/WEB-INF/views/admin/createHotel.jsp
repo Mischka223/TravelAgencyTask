@@ -1,43 +1,49 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Acer
-  Date: 28.11.2020
-  Time: 17:56
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+
 <html>
 <head>
-    <title>Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>add hotel</title>
 </head>
 <body>
 <style>
-    h1{
+    select{
+        text-align: center;
+        align-content: center;
+        padding: 6px;
+        margin-left: 580px;
+        border: 10px solid gray;
+    }
+    h1 {
         color: gray;
         text-align: center;
     }
-    hr{
+
+    hr {
         margin: 40px;
     }
-    li{
+
+    li {
         display: inline;
         padding: 10px;
         float: right;
 
     }
 
-    input{
+    input {
         text-align: center;
         align-content: center;
         padding: 6px;
         margin-left: 580px;
-        border : 10px solid gray;
+        border: 10px solid gray;
     }
-    button{
+
+    button {
         border: 5px solid gray;
-        margin-left: 580px ;
+        margin-left: 580px;
     }
-    button:hover{
+
+    button:hover {
         border: 5px solid firebrick;
     }
 </style>
@@ -50,12 +56,21 @@
 <hr>
 <div class="container mt-5 mb-5">
     <h1>Add Hotel</h1>
-    <form  action="/admin/create/hotel/" method="post">
+        <jsp:useBean id="obj" class="ua.travelAgency.model.Country" scope="page"/>
+
+    <form action="/admin/create/hotel/" method="post">
         <input type="text" name="name" placeholder="Enter Hotel name" class="form-control"><br>
-        <input type="text" name="country" placeholder="Enter hotel country" class="form-control"><br>
+        <p><select name="country">
+            <option>Countries</option>
+            <c:forEach var="country" items="${countries}">
+                <option><c:out value="${country.name}"/>Countries</option>
+            </c:forEach>
+        </select></p>
+
         <input type="text" name="description" placeholder="Enter hotel description" class="form-control"><br>
         <button type="submit" class="btn btn-success">Add hotel</button>
     </form>
+
 </div>
 </body>
 </html>

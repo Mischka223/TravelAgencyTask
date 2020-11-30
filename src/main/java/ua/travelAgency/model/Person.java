@@ -18,13 +18,15 @@ public class Person {
     private String password;
 
 
-    public Person(Long id,String userName,String login,String password){
+    public Person(Long id, String userName, String login, String password) {
         this.id = id;
         this.userName = userName;
         this.login = login;
         this.password = password;
     }
-    public Person(){}
+
+    public Person() {
+    }
 
     public Long getId() {
         return id;

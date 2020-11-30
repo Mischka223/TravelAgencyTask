@@ -52,4 +52,23 @@ public class Apartment {
     public void setRooms(int rooms) {
         this.rooms = rooms;
     }
+
+    public Hotel getHotel() {
+        return hotel;
+    }
+
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
+    }
+
+    @Override
+    public String   toString() {
+        return "Apartment{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", rooms=" + rooms +
+                ", hotel=" + hotel +
+                '}';
+    }
 }

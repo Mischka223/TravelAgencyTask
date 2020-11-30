@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ua.travelAgency.HotelService.HotelService;
+import ua.travelAgency.model.Apartment;
 import ua.travelAgency.model.Hotel;
 
 
@@ -34,7 +35,8 @@ public class ManagerController {
     @GetMapping("/create/hotel")
     public String createHotel(Model model) {
         model.addAttribute("hotel", new Hotel());
-        System.out.println("create new hotel" + model);
+        model.addAttribute("countries",hotelService.countryList());
+
         return "admin/createHotel";
     }
 
@@ -75,5 +77,20 @@ public class ManagerController {
         hotelService.updateHotel(hotel);
         return "redirect:/admin/list/hotel";
     }
+    @GetMapping("/hotel/{id}/create/apartment")
+    public String createApartment(@PathVariable("id") int id, Model model){
+        model.addAttribute("hotel",hotelService.getHotelById(id));
+        model.addAttribute("apartment",new Apartment());
+
+        System.out.println(model);
+        return "admin/createApartment";
+    }
+    @PostMapping("/hotel/{id}/create/apartment")
+    public String createApartment(@PathVariable("id")int id,
+                                  @ModelAttribute("apartment") Apartment apartment,Model model){
+        model.addAttribute("hotel",hotelService.getHotelById(id));
+        hotelService.createApartment(id,apartment);
+        return "redirect:/admin/list/hotel";
+   }
 
 }

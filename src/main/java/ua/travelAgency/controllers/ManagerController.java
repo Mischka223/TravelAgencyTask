@@ -66,6 +66,7 @@ public class ManagerController {
     @GetMapping("/edit/hotel/{id}")
     public String editHotel(@PathVariable("id") int id, Model model) {
         model.addAttribute("hotel", hotelService.getHotelById(id));
+        model.addAttribute("countries",hotelService.countryList());
         return "admin/editHotel";
     }
 
@@ -86,8 +87,8 @@ public class ManagerController {
         return "admin/createApartment";
     }
     @PostMapping("/hotel/{id}/create/apartment")
-    public String createApartment(@PathVariable("id")int id,
-                                  @ModelAttribute("apartment") Apartment apartment,Model model){
+    public String createApartment2(@ModelAttribute("apartment") Apartment apartment,
+                                   @PathVariable("id") int id, Model model){
         model.addAttribute("hotel",hotelService.getHotelById(id));
         hotelService.createApartment(id,apartment);
         return "redirect:/admin/list/hotel";

@@ -38,7 +38,7 @@
 <hr>
 <div class="container mt-5 mb-5">
     <h1>Add apartment</h1>
-    <form  action="/admin/hotel/44/create/apartment" method="post">
+    <form  action="/admin/hotel/<c:out value="${hotel.id}"/>/create/apartment" method="post">
         <label>
             <input type="text" name="name" placeholder="Enter apartment name" class="form-control">
         </label><br>

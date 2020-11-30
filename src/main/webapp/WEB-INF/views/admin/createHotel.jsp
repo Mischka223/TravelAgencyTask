@@ -57,7 +57,6 @@
 <div class="container mt-5 mb-5">
     <h1>Add Hotel</h1>
         <jsp:useBean id="obj" class="ua.travelAgency.model.Country" scope="page"/>
-
     <form action="/admin/create/hotel/" method="post">
         <input type="text" name="name" placeholder="Enter Hotel name" class="form-control"><br>
         <p><select name="country">

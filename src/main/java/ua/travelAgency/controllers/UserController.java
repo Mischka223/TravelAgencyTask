@@ -32,7 +32,6 @@ public class UserController {
     }
 
 
-
     //Окремий готель
     @GetMapping("/hotel/{id}")
     public String showHotel(@PathVariable("id") Integer id, Model model) {

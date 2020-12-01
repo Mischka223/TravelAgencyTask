@@ -1,7 +1,6 @@
 package ua.travelAgency.model;
 
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 @Entity
@@ -19,7 +18,7 @@ public class Hotel {
     @Column(name = "country")
     private String country;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "hotel", orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "hotel")
     private List<Apartment> apartmentList;
 
     public Hotel(String name, String description, String country) {

@@ -45,7 +45,7 @@
             </td>
             <td>
                 <form action="/admin/hotel/<c:out value="${hotel.id}"/>/apartment/<c:out value="${apartment.id}"/>/edit"
-                      method="post">
+                      method="get">
                     <button type="submit" class="btn-link">Edit</button>
                 </form>
             </td>

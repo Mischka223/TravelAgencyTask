@@ -19,11 +19,11 @@ public class Apartment {
     private String description;
 
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
 
-    public Apartment(String name, String description,int price) {
+    public Apartment(String name, String description, int price) {
         this.name = name;
         this.description = description;
         this.price = price;

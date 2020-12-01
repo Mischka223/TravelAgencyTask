@@ -6,8 +6,6 @@
     <title>Hotels</title>
 </head>
 <body>
-
-
 <c:if test="${!empty hotels}">
     <table border="1">
         <tr>

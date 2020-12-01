@@ -35,11 +35,13 @@
         margin-left: 580px;
         border : 10px solid gray;
     }
-    button{
+
+    button {
         border: 5px solid gray;
-        margin-left: 580px ;
+        margin-left: 580px;
     }
-    button:hover{
+
+    button:hover {
         border: 5px solid firebrick;
     }
 </style>
@@ -47,15 +49,15 @@
 <hr>
 <div class="container mt-5 mb-5">
     <h1>Add apartment</h1>
-    <form  action="/admin/hotel/<c:out value="${hotel.id}"/>/create/apartment" method="post">
+    <form action="/admin/hotel/<c:out value="${hotel.id}"/>/create/apartment" method="post">
         <label>
             <input type="text" name="name" placeholder="Enter apartment name" class="form-control">
         </label><br>
         <select name="typeOfApartment">
             <option>type of apartment</option>
-                <option>cheap apartment</option>
-                <option>normal apartment</option>
-                <option>lux apartment</option>
+            <option>cheap apartment</option>
+            <option>normal apartment</option>
+            <option>lux apartment</option>
         </select>
         <label>
             <input type="text" name="description" placeholder="Enter apartment description " class="form-control">

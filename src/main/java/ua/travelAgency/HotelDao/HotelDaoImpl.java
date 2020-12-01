@@ -8,6 +8,7 @@ import ua.travelAgency.model.Country;
 import ua.travelAgency.model.Hotel;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Repository
 public class HotelDaoImpl implements HotelDao {
@@ -101,25 +102,30 @@ public class HotelDaoImpl implements HotelDao {
     }
 
     @Override
-    public List<Apartment> removeApartment(Integer hotelId, Integer apartmentId) {
+    public void removeApartment(Integer hotelId, Integer apartmentId) {
         Session session = getCurrentSession();
         Hotel hotel = session.load(Hotel.class, hotelId);
-        List <Apartment> apartmentsList = hotel.getApartmentList();
-//                apartmentsList.stream().filter(apartment ->apartmentId.equals(apartment.getId())).ifPresent(apartment ->{
-//            session.remove(apartment);
-//        });
+        List<Apartment> apartments = hotel.getApartmentList();
+        Apartment apartment = apartments.stream()
+                .filter(apart -> apart.getId().equals(apartmentId))
+                .findFirst()
+                .orElseThrow(() -> new NoSuchElementException("apartment by id " + apartmentId + "not found"));
+        session.remove(apartment);
 
-        session.save(hotel);
-        System.out.println("Hotel successfully delete. Hotel details: " + hotel.getApartmentList().get(hotelId));
-        return hotel.getApartmentList();
+
     }
 
     @Override
-    public Apartment updateApartment(Integer hotelId, Integer apartmentId) {
+    public void updateApartment(Integer hotelId, Integer apartmentId) {
         Session session = getCurrentSession();
         Hotel hotel = session.load(Hotel.class, hotelId);
-        session.update(hotel.getApartmentList().get(apartmentId));
-        return hotel.getApartmentList().get(apartmentId);
+        List<Apartment> apartments = hotel.getApartmentList();
+        Apartment apartment = apartments.stream()
+                .filter(apart -> apart.getId().equals(apartmentId))
+                .findFirst()
+                .orElseThrow(() -> new NoSuchElementException("apartment by id " + apartmentId + "not found"));
+        session.update(apartment);
+
     }
 
     @Override

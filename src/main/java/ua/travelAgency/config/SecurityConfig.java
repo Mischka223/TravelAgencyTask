@@ -12,19 +12,25 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
-//@Configuration
-//@EnableWebSecurity
+@Configuration
+@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/admin")
+        http
+                .csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/admin/**")
                 .hasRole("Admin")
-                .antMatchers("/user").hasAnyRole("Admin", "User").anyRequest()
-                .authenticated().and().formLogin();
+                .antMatchers("/user/**")
+                .hasAnyRole("Admin", "User")
+                .anyRequest()
+                .authenticated()
+                .and()
+                .formLogin();
 
     }
-
 
     @Bean
     @Override
@@ -35,7 +41,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .password("{noop}admin1")
                         .roles("Admin")
                         .build(),
-                        User.builder().username("User")
+                        User.builder()
+                                .username("User")
                                 .password("{noop}user1")
                                 .roles("User")
                                 .build()

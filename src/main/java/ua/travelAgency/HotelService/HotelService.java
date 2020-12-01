@@ -21,9 +21,9 @@ public interface HotelService {
 
     public Apartment getApartmentById(Integer hotelId, Integer apartmentId);
 
-    public List<Apartment> removeApartment(Integer hotelId, Integer apartmentId);
+    public void removeApartment(Integer hotelId, Integer apartmentId);
 
-    public Apartment updateApartment(Integer hotelId, Integer apartmentId);
+    public void updateApartment(Integer hotelId, Integer apartmentId);
 
     public List<Country> countryList();
 

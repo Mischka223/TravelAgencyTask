@@ -53,12 +53,12 @@ public class HotelServiceImpl implements HotelService {
         return hotelDao.getApartmentById(hotelId, apartmentId);
     }
 
-    public List<Apartment> removeApartment(Integer hotelId, Integer apartmentId) {
-        return hotelDao.removeApartment(hotelId, apartmentId);
+    public void removeApartment(Integer hotelId, Integer apartmentId) {
+        hotelDao.removeApartment(hotelId, apartmentId);
     }
 
-    public Apartment updateApartment(Integer hotelId, Integer apartmentId) {
-        return hotelDao.updateApartment(hotelId, apartmentId);
+    public void updateApartment(Integer hotelId, Integer apartmentId) {
+        hotelDao.updateApartment(hotelId, apartmentId);
     }
 
     @Override

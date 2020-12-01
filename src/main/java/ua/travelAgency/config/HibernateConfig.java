@@ -32,7 +32,7 @@ public class HibernateConfig {
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
-        sessionFactory.setPackagesToScan(new String[] { "ua.travelAgency" });
+        sessionFactory.setPackagesToScan(new String[]{"ua.travelAgency"});
         sessionFactory.setHibernateProperties(hibernateProperties());
         return sessionFactory;
     }

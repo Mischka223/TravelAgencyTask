@@ -108,7 +108,7 @@ public class ManagerController {
                                   @PathVariable("apartmentId") Integer apartmentId) {
         hotelService.removeApartment(hotelId, apartmentId);
 
-        return "redirect:/admin/hotel/{id}";
+        return "redirect:/admin/list/hotel";
     }
 
     @GetMapping("hotel/{hotelId}/apartment/{apartmentId}/edit")

@@ -13,7 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.DefaultMockMvcBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import com.softserve.travelAgency.HotelService.HotelService;
+import com.softserve.travelAgency.service.HotelService;
 import com.softserve.travelAgency.config.SpringConfig;
 import com.softserve.travelAgency.model.Apartment;
 import com.softserve.travelAgency.model.Hotel;

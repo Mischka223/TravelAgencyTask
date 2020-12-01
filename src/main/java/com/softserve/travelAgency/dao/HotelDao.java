@@ -1,4 +1,4 @@
-package com.softserve.travelAgency.HotelService;
+package com.softserve.travelAgency.dao;
 
 import com.softserve.travelAgency.model.Apartment;
 import com.softserve.travelAgency.model.Country;
@@ -6,7 +6,7 @@ import com.softserve.travelAgency.model.Hotel;
 
 import java.util.List;
 
-public interface HotelService {
+public interface HotelDao {
     Hotel addHotel(Hotel hotel);
 
     Hotel updateHotel(Hotel hotel);
@@ -28,5 +28,6 @@ public interface HotelService {
     List<Country> countryList();
 
     List<Apartment> apartmentList(Integer id);
+
 
 }

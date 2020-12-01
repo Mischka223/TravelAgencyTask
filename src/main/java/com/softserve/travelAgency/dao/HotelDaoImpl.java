@@ -1,4 +1,4 @@
-package com.softserve.travelAgency.HotelDao;
+package com.softserve.travelAgency.dao;
 
 import com.softserve.travelAgency.model.Apartment;
 import com.softserve.travelAgency.model.Country;

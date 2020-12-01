@@ -5,7 +5,7 @@ import com.softserve.travelAgency.model.Hotel;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import com.softserve.travelAgency.HotelService.HotelService;
+import com.softserve.travelAgency.service.HotelService;
 
 
 @Controller

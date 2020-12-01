@@ -1,11 +1,11 @@
-package ua.travelAgency.HotelService;
+package travelAgency.HotelService;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ua.travelAgency.HotelDao.HotelDao;
-import ua.travelAgency.model.Apartment;
-import ua.travelAgency.model.Country;
-import ua.travelAgency.model.Hotel;
+import travelAgency.model.Apartment;
+import travelAgency.model.Country;
+import travelAgency.model.Hotel;
+import travelAgency.HotelDao.HotelDao;
 
 import java.util.List;
 

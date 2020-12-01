@@ -1,4 +1,4 @@
-package ua.travelAgency.config;
+package travelAgency.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 

@@ -1,20 +1,20 @@
-package ua.travelAgency.controllers;
+package travelAgency.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ua.travelAgency.HotelService.HotelService;
-import ua.travelAgency.model.Apartment;
-import ua.travelAgency.model.Hotel;
+import travelAgency.model.Apartment;
+import travelAgency.model.Hotel;
+import travelAgency.HotelService.HotelService;
 
 
 @Controller
 @RequestMapping("/admin")
-public class ManagerController {
+public class HotelManagerController {
 
     private final HotelService hotelService;
 
-    public ManagerController(HotelService hotelService) {
+    public HotelManagerController(HotelService hotelService) {
         this.hotelService = hotelService;
     }
 

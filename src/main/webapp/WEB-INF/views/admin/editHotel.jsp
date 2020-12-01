@@ -58,7 +58,7 @@
 <hr>
 <div class="container mt-5 mb-5">
     <h1>Edit Hotel</h1>
-    <jsp:useBean id="obj" class="ua.travelAgency.model.Country" scope="page"/>
+    <jsp:useBean id="obj" class="travelAgency.model.Country" scope="page"/>
     <form action="/admin/edit/hotel/<c:out value="${hotel.id}"/>" method="post">
         <input type="text" name="name" placeholder="Enter Hotel name" class="form-control"><br>
         <select name="country">

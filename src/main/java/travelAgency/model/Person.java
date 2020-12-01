@@ -1,4 +1,4 @@
-package ua.travelAgency.model;
+package travelAgency.model;
 
 import javax.persistence.*;
 

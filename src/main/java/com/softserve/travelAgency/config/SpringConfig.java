@@ -10,7 +10,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
-@ComponentScan("ua.travelAgency")
+@ComponentScan("com.softserve.travelAgency")
 @EnableWebMvc
 public class SpringConfig implements WebMvcConfigurer {
     @Override

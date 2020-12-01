@@ -16,7 +16,7 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@ComponentScan("ua.travelAgency")
+@ComponentScan("com.softserve.travelAgency")
 @PropertySource(value = {"classpath:application.properties"})
 @EnableTransactionManagement
 public class HibernateConfig {
@@ -32,7 +32,7 @@ public class HibernateConfig {
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
-        sessionFactory.setPackagesToScan(new String[]{"ua.travelAgency"});
+        sessionFactory.setPackagesToScan(new String[]{"com.softserve.travelAgency"});
         sessionFactory.setHibernateProperties(hibernateProperties());
         return sessionFactory;
     }

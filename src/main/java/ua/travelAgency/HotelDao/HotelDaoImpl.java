@@ -44,7 +44,7 @@ public class HotelDaoImpl implements HotelDao {
     }
 
     @Override
-    public void removeHotel(int id) {
+    public void removeHotel(Integer id) {
         Session session = getCurrentSession();
         Hotel hotel = session.load(Hotel.class, id);
 
@@ -55,7 +55,7 @@ public class HotelDaoImpl implements HotelDao {
     }
 
     @Override
-    public Hotel getHotelById(int id) {
+    public Hotel getHotelById(Integer id) {
         Session session = getCurrentSession();
         Hotel hotel = session.load(Hotel.class, id);
         System.out.println("Hotel successfully loaded.Hotel details" + hotel);
@@ -82,7 +82,7 @@ public class HotelDaoImpl implements HotelDao {
         return countries;
     }
 
-    public Apartment createApartment(int id, Apartment apartment) {
+    public Apartment createApartment(Integer id, Apartment apartment) {
         Session session = getCurrentSession();
         Hotel hotel = session.load(Hotel.class, id);
         session.save(apartment);
@@ -93,7 +93,7 @@ public class HotelDaoImpl implements HotelDao {
         return apartment;
     }
 
-    public Apartment getApartmentById(int hotelId, int apartmentId) {
+    public Apartment getApartmentById(Integer hotelId, Integer apartmentId) {
         Session session = getCurrentSession();
         Hotel hotel = session.load(Hotel.class, hotelId);
         hotel.getApartmentList().get(apartmentId);
@@ -101,13 +101,13 @@ public class HotelDaoImpl implements HotelDao {
     }
 
     @Override
-    public List<Apartment> removeApartment(int hotelId, int apartmentId) {
+    public List<Apartment> removeApartment(Integer hotelId, Integer apartmentId) {
         Session session = getCurrentSession();
         Hotel hotel = session.load(Hotel.class, hotelId);
-        if (hotel.getApartmentList().size() != 0 && hotel.getApartmentList().get(apartmentId) != null) {
-
-            session.remove(hotel.getApartmentList().get(apartmentId));
-        }
+        List <Apartment> apartmentsList = hotel.getApartmentList();
+//                apartmentsList.stream().filter(apartment ->apartmentId.equals(apartment.getId())).ifPresent(apartment ->{
+//            session.remove(apartment);
+//        });
 
         session.save(hotel);
         System.out.println("Hotel successfully delete. Hotel details: " + hotel.getApartmentList().get(hotelId));
@@ -115,7 +115,7 @@ public class HotelDaoImpl implements HotelDao {
     }
 
     @Override
-    public Apartment updateApartment(int hotelId, int apartmentId) {
+    public Apartment updateApartment(Integer hotelId, Integer apartmentId) {
         Session session = getCurrentSession();
         Hotel hotel = session.load(Hotel.class, hotelId);
         session.update(hotel.getApartmentList().get(apartmentId));
@@ -123,7 +123,7 @@ public class HotelDaoImpl implements HotelDao {
     }
 
     @Override
-    public List<Apartment> apartmentList(int id) {
+    public List<Apartment> apartmentList(Integer id) {
         Session session = getCurrentSession();
         Hotel hotel = session.load(Hotel.class, id);
         List<Apartment> apartments = hotel.getApartmentList();

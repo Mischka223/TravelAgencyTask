@@ -30,12 +30,12 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public void removeHotel(int id) {
+    public void removeHotel(Integer id) {
         hotelDao.removeHotel(id);
     }
 
     @Override
-    public Hotel getHotelById(int id) {
+    public Hotel getHotelById(Integer id) {
         return hotelDao.getHotelById(id);
     }
 
@@ -45,19 +45,19 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public Apartment createApartment(int id, Apartment apartment) {
+    public Apartment createApartment(Integer id, Apartment apartment) {
         return hotelDao.createApartment(id, apartment);
     }
 
-    public Apartment getApartmentById(int hotelId, int apartmentId) {
+    public Apartment getApartmentById(Integer hotelId, Integer apartmentId) {
         return hotelDao.getApartmentById(hotelId, apartmentId);
     }
 
-    public List<Apartment> removeApartment(int hotelId, int apartmentId) {
+    public List<Apartment> removeApartment(Integer hotelId, Integer apartmentId) {
         return hotelDao.removeApartment(hotelId, apartmentId);
     }
 
-    public Apartment updateApartment(int hotelId, int apartmentId) {
+    public Apartment updateApartment(Integer hotelId, Integer apartmentId) {
         return hotelDao.updateApartment(hotelId, apartmentId);
     }
 
@@ -67,7 +67,7 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public List<Apartment> apartmentList(int id) {
+    public List<Apartment> apartmentList(Integer id) {
         return hotelDao.apartmentList(id);
     }
 }

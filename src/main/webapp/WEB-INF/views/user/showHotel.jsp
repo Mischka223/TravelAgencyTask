@@ -6,8 +6,6 @@
     <title>HelloWorld page</title>
 </head>
 <body>
-<a href="/admin/hotel/<c:out value="${hotel.id}"/>/create/apartment">add apartment</a>
-<br/>
 <br/>
 <br/>
 <p>id: <c:out value="${hotel.id}"/></p>
@@ -28,8 +26,6 @@
             <th width="30">typeOfApartment</th>
             <th width="60">price</th>
             <th width="100">description</th>
-            <th width="70">Delete</th>
-            <th width="90">Edit</th>
         </tr>
         <c:forEach items="${apartments}" var="apartment">
             <td><c:out value="${apartment.id}"/></td>
@@ -37,18 +33,6 @@
             <td><c:out value="${apartment.typeOfApartment}"/></td>
             <td><c:out value="${apartment.price}"/></td>
             <td><c:out value="${apartment.description}"/></td>
-            <td>
-                <form action="/admin/hotel/<c:out value="${hotel.id}"/>/apartment/<c:out value="${apartment.id}"/>/delete"
-                      method="post">
-                    <button type="submit" class="btn-link">Delete</button>
-                </form>
-            </td>
-            <td>
-                <form action="/admin/hotel/<c:out value="${hotel.id}"/>/apartment/<c:out value="${apartment.id}"/>/edit"
-                      method="post">
-                    <button type="submit" class="btn-link">Edit</button>
-                </form>
-            </td>
             </tr>
         </c:forEach>
     </table>

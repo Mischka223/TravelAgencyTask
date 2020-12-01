@@ -63,10 +63,17 @@
           method="post">
         <input type="text" name="<c:out value="${apartment.name}"/>" placeholder="Enter Hotel name"
                class="form-control"><br>
-        <input type="text" name="<c:out value="${apartment.description}"/>" placeholder="Enter apartment rooms"
+        <select name="typeOfApartment">
+            <option>type of apartment</option>
+            <option>cheap apartment</option>
+            <option>normal apartment</option>
+            <option>lux apartment</option>
+        </select>
+        <input type="text" name="<c:out value="${apartment.price}"/>" placeholder="Enter hotel price"
                class="form-control"><br>
-        <input type="text" name="<c:out value="${apartment.rooms}"/>" placeholder="Enter hotel description"
+        <input type="text" name="<c:out value="${apartment.description}"/>" placeholder="Enter apartment description"
                class="form-control"><br>
+
         <button type="submit" class="btn btn-success">Update hotel</button>
     </form>
 </div>

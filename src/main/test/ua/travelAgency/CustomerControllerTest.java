@@ -68,7 +68,7 @@ public class CustomerControllerTest {
         Apartment apartment = new Apartment();
         apartment.setDescription("Apartment Description");
         apartment.setName("Apartment Name");
-        apartment.setRooms(3);
+
         return apartment;
     }
 

@@ -11,23 +11,23 @@ public interface HotelDao {
 
     public Hotel updateHotel(Hotel hotel);
 
-    public void removeHotel(int id);
+    public void removeHotel(Integer id);
 
-    public Hotel getHotelById(int id);
+    public Hotel getHotelById(Integer id);
 
     public List<Hotel> listHotels();
 
-    public Apartment createApartment(int id, Apartment apartment);
+    public Apartment createApartment(Integer id, Apartment apartment);
 
-    public Apartment getApartmentById(int hotelId, int apartmentId);
+    public Apartment getApartmentById(Integer hotelId, Integer apartmentId);
 
-    public List<Apartment> removeApartment(int hotelId, int apartmentId);
+    public List<Apartment> removeApartment(Integer hotelId, Integer apartmentId);
 
-    public Apartment updateApartment(int hotelId, int apartmentId);
+    public Apartment updateApartment(Integer hotelId, Integer apartmentId);
 
     public List<Country> countryList();
 
-    public List<Apartment> apartmentList(int id);
+    public List<Apartment> apartmentList(Integer id);
 
 
 }

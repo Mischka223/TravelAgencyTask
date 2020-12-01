@@ -7,13 +7,14 @@
 </head>
 <body>
 <style>
-    select{
+    select {
         text-align: center;
         align-content: center;
         padding: 6px;
         margin-left: 580px;
         border: 10px solid gray;
     }
+
     h1 {
         color: gray;
         text-align: center;
@@ -56,15 +57,15 @@
 <hr>
 <div class="container mt-5 mb-5">
     <h1>Add Hotel</h1>
-        <jsp:useBean id="obj" class="ua.travelAgency.model.Country" scope="page"/>
-    <form action="/admin/create/hotel/" method="post">
+    <jsp:useBean id="obj" class="ua.travelAgency.model.Country" scope="page"/>
+    <form action="/admin/create/hotel" method="post">
         <input type="text" name="name" placeholder="Enter Hotel name" class="form-control"><br>
-        <p><select name="country">
+        <select name="country">
             <option>Countries</option>
             <c:forEach var="country" items="${countries}">
                 <option><c:out value="${country.name}"/>Countries</option>
             </c:forEach>
-        </select></p>
+        </select>
 
         <input type="text" name="description" placeholder="Enter hotel description" class="form-control"><br>
         <button type="submit" class="btn btn-success">Add hotel</button>

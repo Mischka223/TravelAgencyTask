@@ -44,12 +44,12 @@ public class ManagerController {
     @PostMapping("/create/hotel")
     public String createNewHotel(@ModelAttribute("hotel") Hotel hotel) {
         hotelService.addHotel(hotel);
-        return "redirect:/home";
+        return "redirect:/admin/list/hotel";
     }
 
     //Видалення готелю по id
     @PostMapping("/delete/hotel/{id}")
-    public String deleteHotel(@PathVariable("id") int id) {
+    public String deleteHotel(@PathVariable("id") Integer id) {
         hotelService.removeHotel(id);
         return "redirect:/admin/list/hotel";
 
@@ -57,7 +57,7 @@ public class ManagerController {
 
     //Окремий готель
     @GetMapping("/hotel/{id}")
-    public String showHotel(@PathVariable("id") int id, Model model) {
+    public String showHotel(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("hotel", hotelService.getHotelById(id));
         model.addAttribute("apartments", hotelService.apartmentList(id));
         return "admin/showHotel";
@@ -65,7 +65,7 @@ public class ManagerController {
 
     //шаблон для зміни готелю
     @GetMapping("/edit/hotel/{id}")
-    public String editHotel(@PathVariable("id") int id, Model model) {
+    public String editHotel(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("hotel", hotelService.getHotelById(id));
         model.addAttribute("countries", hotelService.countryList());
         return "admin/editHotel";
@@ -73,7 +73,7 @@ public class ManagerController {
 
     //Зміна параметрів готелю
     @PostMapping("/edit/hotel/{id}")
-    public String updateHotel(@PathVariable("id") int id,
+    public String updateHotel(@PathVariable("id") Integer id,
                               @ModelAttribute("hotel") Hotel hotel) {
         hotelService.getHotelById(id);
         hotelService.updateHotel(hotel);
@@ -81,7 +81,7 @@ public class ManagerController {
     }
 
     @GetMapping("/hotel/{id}/create/apartment")
-    public String createApartment(@PathVariable("id") int id, Model model) {
+    public String createApartment(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("hotel", hotelService.getHotelById(id));
         model.addAttribute("apartment", new Apartment());
 
@@ -91,29 +91,29 @@ public class ManagerController {
 
     @PostMapping("/hotel/{id}/create/apartment")
     public String createNewApartment(@ModelAttribute("apartment") Apartment apartment,
-                                     @PathVariable("id") int id, Model model) {
+                                     @PathVariable("id") Integer id, Model model) {
         model.addAttribute("hotel", hotelService.getHotelById(id));
         hotelService.createApartment(id, apartment);
         return "redirect:/admin/list/hotel";
     }
 
     @GetMapping("/hotel/{id}/apartments")
-    public String apartmentList(@PathVariable("id") int id, Model model) {
+    public String apartmentList(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("apartments", hotelService.apartmentList(id));
         return "admin/allApartmentInHotel";
     }
 
     @PostMapping("hotel/{hotelId}/apartment/{apartmentId}/delete")
-    public String deleteApartment(@PathVariable("hotelId") int hotelId,
-                                  @PathVariable("apartmentId") int apartmentId) {
+    public String deleteApartment(@PathVariable("hotelId") Integer hotelId,
+                                  @PathVariable("apartmentId") Integer apartmentId) {
         hotelService.removeApartment(hotelId, apartmentId);
 
         return "redirect:/admin/hotel/{id}";
     }
 
     @GetMapping("hotel/{hotelId}/apartment/{apartmentId}/edit")
-    public String editApartment(@PathVariable("hotelId") int hotelId,
-                                @PathVariable("apartmentId") int apartmentId,
+    public String editApartment(@PathVariable("hotelId") Integer hotelId,
+                                @PathVariable("apartmentId") Integer apartmentId,
                                 Model model) {
         model.addAttribute("hotel", hotelService.getHotelById(hotelId));
         model.addAttribute("apartment", hotelService.getApartmentById(hotelId, apartmentId));
@@ -122,8 +122,8 @@ public class ManagerController {
     }
 
     @PostMapping("hotel/{hotelId}/apartment/{apartmentId}/edit")
-    public String editApartment(@PathVariable("hotelId") int hotelId,
-                                @PathVariable("apartmentId") int apartmentId,
+    public String editApartment(@PathVariable("hotelId") Integer hotelId,
+                                @PathVariable("apartmentId") Integer apartmentId,
                                 @ModelAttribute Apartment apartment) {
 
         hotelService.updateApartment(hotelId, apartmentId);

@@ -8,39 +8,44 @@
 
 <body>
 <style>
-    select{
+    select {
         text-align: center;
         align-content: center;
         padding: 6px;
         margin-left: 580px;
         border: 10px solid gray;
     }
-    h1{
+
+    h1 {
         color: gray;
         text-align: center;
     }
-    hr{
+
+    hr {
         margin: 40px;
     }
-    li{
+
+    li {
         display: inline;
         padding: 10px;
         float: right;
 
     }
 
-    input{
+    input {
         text-align: center;
         align-content: center;
         padding: 6px;
         margin-left: 580px;
-        border : 10px solid gray;
+        border: 10px solid gray;
     }
-    button{
+
+    button {
         border: 5px solid gray;
-        margin-left: 580px ;
+        margin-left: 580px;
     }
-    button:hover{
+
+    button:hover {
         border: 5px solid firebrick;
     }
 </style>
@@ -56,13 +61,12 @@
     <jsp:useBean id="obj" class="ua.travelAgency.model.Country" scope="page"/>
     <form action="/admin/edit/hotel/<c:out value="${hotel.id}"/>" method="post">
         <input type="text" name="name" placeholder="Enter Hotel name" class="form-control"><br>
-        <p><select name="country">
+        <select name="country">
             <option>Countries</option>
             <c:forEach var="country" items="${countries}">
                 <option><c:out value="${country.name}"/>Countries</option>
             </c:forEach>
-        </select></p>
-
+        </select>
         <input type="text" name="description" placeholder="Enter hotel description" class="form-control"><br>
         <button type="submit" class="btn btn-success">Update hotel</button>
     </form>

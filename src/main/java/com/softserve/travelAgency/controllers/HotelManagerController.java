@@ -18,20 +18,18 @@ public class HotelManagerController {
         this.hotelService = hotelService;
     }
 
-    //Основна сторінка
+
     @GetMapping("/home")
     public String HomePage() {
         return "admin/HomeManagerPage   ";
     }
 
-    //Сторінка всіх готелів
     @GetMapping("/list/hotel")
     public String listHotel(Model model) {
         model.addAttribute("hotels", hotelService.listHotels());
         return "admin/allHotel";
     }
 
-    //Сторінка шаблону готелю
     @GetMapping("/create/hotel")
     public String createHotel(Model model) {
         model.addAttribute("hotel", new Hotel());
@@ -40,14 +38,12 @@ public class HotelManagerController {
         return "admin/createHotel";
     }
 
-    //Пост метод для шаблону
     @PostMapping("/create/hotel")
     public String createNewHotel(@ModelAttribute("hotel") Hotel hotel) {
         hotelService.addHotel(hotel);
         return "redirect:/admin/list/hotel";
     }
 
-    //Видалення готелю по id
     @PostMapping("/delete/hotel/{id}")
     public String deleteHotel(@PathVariable("id") Integer id) {
         hotelService.removeHotel(id);
@@ -55,7 +51,6 @@ public class HotelManagerController {
 
     }
 
-    //Окремий готель
     @GetMapping("/hotel/{id}")
     public String showHotel(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("hotel", hotelService.getHotelById(id));
@@ -63,7 +58,6 @@ public class HotelManagerController {
         return "admin/showHotel";
     }
 
-    //шаблон для зміни готелю
     @GetMapping("/edit/hotel/{id}")
     public String editHotel(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("hotel", hotelService.getHotelById(id));
@@ -71,7 +65,6 @@ public class HotelManagerController {
         return "admin/editHotel";
     }
 
-    //Зміна параметрів готелю
     @PostMapping("/edit/hotel/{id}")
     public String updateHotel(@PathVariable("id") Integer id,
                               @ModelAttribute("hotel") Hotel hotel) {

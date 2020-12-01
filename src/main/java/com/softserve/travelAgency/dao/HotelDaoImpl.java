@@ -25,7 +25,6 @@ public class HotelDaoImpl implements HotelDao {
             session = sessionFactory.openSession();
         }
         return session;
-
     }
 
     @Override

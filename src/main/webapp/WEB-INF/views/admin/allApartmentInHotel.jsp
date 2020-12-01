@@ -14,12 +14,20 @@
             <th width="120">Name</th>
             <th width="100">description</th>
             <th width="130">rooms</th>
+            <th width="80">Delete</th>
+            <th width="90">Edit</th>
         </tr>
         <c:forEach items="${apartments}" var="apartment">
             <td><c:out value="${apartment.id}"/></td>
             <td><c:out value="${apartment.name}"/></td>
             <td><c:out value="${apartment.description}"/></td>
             <td><c:out value="${apartment.rooms}"/></td>
+            <td>
+                <form action="/admin/hotel/<c:out value="${apartment.id}"/>/apartment/<c:out value="${apartment.id}"/>/delete"
+                      method="post">
+                    <button type="submit" class="btn-link">Delete</button>
+                </form>
+            </td>
             </tr>
         </c:forEach>
     </table>

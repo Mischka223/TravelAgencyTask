@@ -76,7 +76,7 @@ public class HotelDaoImpl implements HotelDao {
     public List<Country> countryList() {
         Session session = getCurrentSession();
         List<Country> countries = session.createQuery("FROM  Country ").list();
-        for (Country country : countries){
+        for (Country country : countries) {
             System.out.println("Country list : " + country);
         }
         return countries;
@@ -93,23 +93,42 @@ public class HotelDaoImpl implements HotelDao {
         return apartment;
     }
 
-    public List<Apartment> removeApartment(int id) {
+    public Apartment getApartmentById(int hotelId, int apartmentId) {
         Session session = getCurrentSession();
-        Hotel hotel = session.load(Hotel.class, id);
-        if (hotel.getApartmentList().get(id) != null) {
-            hotel.getApartmentList().remove(id);
-        }
-        session.save(hotel);
+        Hotel hotel = session.load(Hotel.class, hotelId);
+        hotel.getApartmentList().get(apartmentId);
+        return hotel.getApartmentList().get(apartmentId);
+    }
 
-        System.out.println("Hotel successfully delete. Hotel details: " + hotel.getApartmentList().get(id));
+    @Override
+    public List<Apartment> removeApartment(int hotelId, int apartmentId) {
+        Session session = getCurrentSession();
+        Hotel hotel = session.load(Hotel.class, hotelId);
+        if (hotel.getApartmentList().size() != 0 && hotel.getApartmentList().get(apartmentId) != null) {
+
+            session.remove(hotel.getApartmentList().get(apartmentId));
+        }
+
+        session.save(hotel);
+        System.out.println("Hotel successfully delete. Hotel details: " + hotel.getApartmentList().get(hotelId));
         return hotel.getApartmentList();
     }
+
     @Override
-    public List<Apartment> apartmentList(int id){
+    public Apartment updateApartment(int hotelId, int apartmentId) {
         Session session = getCurrentSession();
-        Hotel hotel = session.load(Hotel.class,id);
+        Hotel hotel = session.load(Hotel.class, hotelId);
+        session.update(hotel.getApartmentList().get(apartmentId));
+        return hotel.getApartmentList().get(apartmentId);
+    }
+
+    @Override
+    public List<Apartment> apartmentList(int id) {
+        Session session = getCurrentSession();
+        Hotel hotel = session.load(Hotel.class, id);
         List<Apartment> apartments = hotel.getApartmentList();
         return apartments;
     }
+
 }
 

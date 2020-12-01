@@ -35,7 +35,7 @@ public class ManagerController {
     @GetMapping("/create/hotel")
     public String createHotel(Model model) {
         model.addAttribute("hotel", new Hotel());
-        model.addAttribute("countries",hotelService.countryList());
+        model.addAttribute("countries", hotelService.countryList());
 
         return "admin/createHotel";
     }
@@ -59,7 +59,7 @@ public class ManagerController {
     @GetMapping("/hotel/{id}")
     public String showHotel(@PathVariable("id") int id, Model model) {
         model.addAttribute("hotel", hotelService.getHotelById(id));
-        model.addAttribute("apartments",hotelService.apartmentList(id));
+        model.addAttribute("apartments", hotelService.apartmentList(id));
         return "admin/showHotel";
     }
 
@@ -67,7 +67,7 @@ public class ManagerController {
     @GetMapping("/edit/hotel/{id}")
     public String editHotel(@PathVariable("id") int id, Model model) {
         model.addAttribute("hotel", hotelService.getHotelById(id));
-        model.addAttribute("countries",hotelService.countryList());
+        model.addAttribute("countries", hotelService.countryList());
         return "admin/editHotel";
     }
 
@@ -79,25 +79,54 @@ public class ManagerController {
         hotelService.updateHotel(hotel);
         return "redirect:/admin/list/hotel";
     }
+
     @GetMapping("/hotel/{id}/create/apartment")
-    public String createApartment(@PathVariable("id") int id, Model model){
-        model.addAttribute("hotel",hotelService.getHotelById(id));
-        model.addAttribute("apartment",new Apartment());
+    public String createApartment(@PathVariable("id") int id, Model model) {
+        model.addAttribute("hotel", hotelService.getHotelById(id));
+        model.addAttribute("apartment", new Apartment());
 
         System.out.println(model);
         return "admin/createApartment";
     }
-    @PostMapping("/hotel/{id}/create/apartment")
-    public String createApartment2(@ModelAttribute("apartment") Apartment apartment,
-                                   @PathVariable("id") int id, Model model){
-        model.addAttribute("hotel",hotelService.getHotelById(id));
-        hotelService.createApartment(id,apartment);
-        return "redirect:/admin/list/hotel";
-   }
-   @GetMapping("/hotel/{id}/apartments")
-    public String apartmentList(@PathVariable("id") int id,Model model){
-        model.addAttribute("apartments",hotelService.apartmentList(id));
-        return "admin/allApartmentInHotel";
-   }
 
+    @PostMapping("/hotel/{id}/create/apartment")
+    public String createNewApartment(@ModelAttribute("apartment") Apartment apartment,
+                                     @PathVariable("id") int id, Model model) {
+        model.addAttribute("hotel", hotelService.getHotelById(id));
+        hotelService.createApartment(id, apartment);
+        return "redirect:/admin/list/hotel";
+    }
+
+    @GetMapping("/hotel/{id}/apartments")
+    public String apartmentList(@PathVariable("id") int id, Model model) {
+        model.addAttribute("apartments", hotelService.apartmentList(id));
+        return "admin/allApartmentInHotel";
+    }
+
+    @PostMapping("hotel/{hotelId}/apartment/{apartmentId}/delete")
+    public String deleteApartment(@PathVariable("hotelId") int hotelId,
+                                  @PathVariable("apartmentId") int apartmentId) {
+        hotelService.removeApartment(hotelId, apartmentId);
+
+        return "redirect:/admin/hotel/{id}";
+    }
+
+    @GetMapping("hotel/{hotelId}/apartment/{apartmentId}/edit")
+    public String editApartment(@PathVariable("hotelId") int hotelId,
+                                @PathVariable("apartmentId") int apartmentId,
+                                Model model) {
+        model.addAttribute("hotel", hotelService.getHotelById(hotelId));
+        model.addAttribute("apartment", hotelService.getApartmentById(hotelId, apartmentId));
+
+        return "/admin/editApartment";
+    }
+
+    @PostMapping("hotel/{hotelId}/apartment/{apartmentId}/edit")
+    public String editApartment(@PathVariable("hotelId") int hotelId,
+                                @PathVariable("apartmentId") int apartmentId,
+                                @ModelAttribute Apartment apartment) {
+
+        hotelService.updateApartment(hotelId, apartmentId);
+        return "redirect:/admin/list/hotel";
+    }
 }

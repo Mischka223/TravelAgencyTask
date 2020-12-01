@@ -45,8 +45,20 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public Apartment createApartment(int id,Apartment apartment) {
-        return hotelDao.createApartment(id,apartment);
+    public Apartment createApartment(int id, Apartment apartment) {
+        return hotelDao.createApartment(id, apartment);
+    }
+
+    public Apartment getApartmentById(int hotelId, int apartmentId) {
+        return hotelDao.getApartmentById(hotelId, apartmentId);
+    }
+
+    public List<Apartment> removeApartment(int hotelId, int apartmentId) {
+        return hotelDao.removeApartment(hotelId, apartmentId);
+    }
+
+    public Apartment updateApartment(int hotelId, int apartmentId) {
+        return hotelDao.updateApartment(hotelId, apartmentId);
     }
 
     @Override
@@ -55,7 +67,7 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public List<Apartment> apartmentList(int id){
-        return  hotelDao.apartmentList(id);
+    public List<Apartment> apartmentList(int id) {
+        return hotelDao.apartmentList(id);
     }
 }

@@ -17,10 +17,17 @@ public interface HotelDao {
 
     public List<Hotel> listHotels();
 
-    public Apartment createApartment(int id,Apartment apartment);
+    public Apartment createApartment(int id, Apartment apartment);
+
+    public Apartment getApartmentById(int hotelId, int apartmentId);
+
+    public List<Apartment> removeApartment(int hotelId, int apartmentId);
+
+    public Apartment updateApartment(int hotelId, int apartmentId);
 
     public List<Country> countryList();
 
     public List<Apartment> apartmentList(int id);
+
 
 }

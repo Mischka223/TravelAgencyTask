@@ -1,4 +1,4 @@
-package travelAgency.config;
+package com.softserve.travelAgency.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

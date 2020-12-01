@@ -1,11 +1,11 @@
-package travelAgency.HotelDao;
+package com.softserve.travelAgency.HotelDao;
 
+import com.softserve.travelAgency.model.Apartment;
+import com.softserve.travelAgency.model.Country;
+import com.softserve.travelAgency.model.Hotel;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
-import travelAgency.model.Apartment;
-import travelAgency.model.Country;
-import travelAgency.model.Hotel;
 
 import java.util.List;
 import java.util.NoSuchElementException;

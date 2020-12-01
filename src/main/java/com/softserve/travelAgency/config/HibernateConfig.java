@@ -1,4 +1,4 @@
-package travelAgency.config;
+package com.softserve.travelAgency.config;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

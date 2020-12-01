@@ -1,11 +1,11 @@
-package travelAgency.controllers;
+package com.softserve.travelAgency.controllers;
 
+import com.softserve.travelAgency.model.Apartment;
+import com.softserve.travelAgency.model.Hotel;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import travelAgency.model.Apartment;
-import travelAgency.model.Hotel;
-import travelAgency.HotelService.HotelService;
+import com.softserve.travelAgency.HotelService.HotelService;
 
 
 @Controller

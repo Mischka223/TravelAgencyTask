@@ -1,11 +1,11 @@
-package travelAgency.HotelService;
+package com.softserve.travelAgency.HotelService;
 
+import com.softserve.travelAgency.model.Apartment;
+import com.softserve.travelAgency.model.Country;
+import com.softserve.travelAgency.model.Hotel;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import travelAgency.model.Apartment;
-import travelAgency.model.Country;
-import travelAgency.model.Hotel;
-import travelAgency.HotelDao.HotelDao;
+import com.softserve.travelAgency.HotelDao.HotelDao;
 
 import java.util.List;
 

@@ -1,11 +1,11 @@
-package travelAgency.controllers;
+package com.softserve.travelAgency.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import travelAgency.HotelService.HotelService;
+import com.softserve.travelAgency.HotelService.HotelService;
 
 @Controller
 @RequestMapping("/user")

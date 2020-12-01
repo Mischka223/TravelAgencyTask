@@ -1,4 +1,4 @@
-package travelAgency.model;
+package com.softserve.travelAgency.model;
 
 import javax.persistence.*;
 import java.util.List;

@@ -13,10 +13,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.DefaultMockMvcBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import travelAgency.HotelService.HotelService;
-import travelAgency.config.SpringConfig;
-import travelAgency.model.Apartment;
-import travelAgency.model.Hotel;
+import com.softserve.travelAgency.HotelService.HotelService;
+import com.softserve.travelAgency.config.SpringConfig;
+import com.softserve.travelAgency.model.Apartment;
+import com.softserve.travelAgency.model.Hotel;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration

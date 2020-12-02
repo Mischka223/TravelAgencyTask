@@ -23,7 +23,8 @@ public class Apartment {
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
 
-    public Apartment(String name, String description, int price) {
+    public Apartment(Integer id, String name, String description, int price) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;

@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Hotels</title>
+    <title>Apartments in hotel</title>
 </head>
 <body>
 

@@ -63,7 +63,7 @@
         <select name="country">
             <option>Countries</option>
             <c:forEach var="country" items="${countries}">
-                <option><c:out value="${country.name}"/>Countries</option>
+                <option><c:out value="${country.name}"/></option>
             </c:forEach>
         </select>
 

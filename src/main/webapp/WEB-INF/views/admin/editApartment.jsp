@@ -61,17 +61,19 @@
 
     <form action="/admin/hotel/<c:out value="${hotel.id}"/>/apartment/<c:out value="${apartment.id}"/>/edit"
           method="post">
-        <input type="text" name="<c:out value="${apartment.name}"/>" placeholder="Enter Hotel name"
-               class="form-control"><br>
+        <label>
+            <input type="text" name="name" value="<c:out value="${apartment.name}"/>" placeholder="Enter Hotel name"
+                   class="form-control">
+        </label><br>
         <select name="typeOfApartment">
             <option>type of apartment</option>
             <option>cheap apartment</option>
             <option>normal apartment</option>
             <option>lux apartment</option>
         </select>
-        <input type="text" name="<c:out value="${apartment.price}"/>" placeholder="Enter hotel price"
+        <input type="text" name="price" value="<c:out value="${apartment.price}"/>" placeholder="Enter apartment price"
                class="form-control"><br>
-        <input type="text" name="<c:out value="${apartment.description}"/>" placeholder="Enter apartment description"
+        <input type="text" name="description"  value="<c:out value="${apartment.description}"/>" placeholder="Enter apartment description"
                class="form-control"><br>
 
         <button type="submit" class="btn btn-success">Update hotel</button>

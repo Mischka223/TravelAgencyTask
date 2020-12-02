@@ -3,6 +3,7 @@ package com.softserve.travelAgency.dao;
 import com.softserve.travelAgency.model.Apartment;
 import com.softserve.travelAgency.model.Country;
 import com.softserve.travelAgency.model.Hotel;
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
@@ -12,6 +13,8 @@ import java.util.NoSuchElementException;
 
 @Repository
 public class HotelDaoImpl implements HotelDao {
+
+    private static final Logger log = Logger.getLogger(HotelDaoImpl.class.getName());
 
     private final SessionFactory sessionFactory;
 
@@ -31,7 +34,7 @@ public class HotelDaoImpl implements HotelDao {
     public Hotel addHotel(Hotel hotel) {
         Session session = getCurrentSession();
         session.save(hotel);
-        System.out.println("Hotel successfully saved. Hotel details: " + hotel);
+        log.info("Hotel successfully saved. Hotel details: " + hotel);
         return hotel;
     }
 
@@ -39,7 +42,7 @@ public class HotelDaoImpl implements HotelDao {
     public Hotel updateHotel(Hotel hotel) {
         Session session = getCurrentSession();
         session.update(hotel);
-        System.out.println("Book successfully update.  Book details " + hotel);
+        log.info("Book successfully update.  Book details " + hotel);
         return hotel;
     }
 
@@ -51,14 +54,14 @@ public class HotelDaoImpl implements HotelDao {
         if (hotel != null) {
             session.remove(hotel);
         }
-        System.out.println("Hotel successfully delete. Hotel details: " + hotel);
+        log.info("Hotel successfully delete. Hotel details: " + hotel);
     }
 
     @Override
     public Hotel getHotelById(Integer id) {
         Session session = getCurrentSession();
         Hotel hotel = session.load(Hotel.class, id);
-        System.out.println("Hotel successfully loaded.Hotel details" + hotel);
+        log.info("Hotel successfully loaded.Hotel details" + hotel);
         return hotel;
     }
 
@@ -67,7 +70,7 @@ public class HotelDaoImpl implements HotelDao {
         Session session = getCurrentSession();
         List<Hotel> hotelList = session.createQuery("From Hotel").list();
         for (Hotel hotel : hotelList) {
-            System.out.println("Hotel list :" + hotel);
+            log.info("Hotel list :" + hotel);
         }
         return hotelList;
     }
@@ -89,16 +92,21 @@ public class HotelDaoImpl implements HotelDao {
         hotel.getApartmentList().add(apartment);
         apartment.setHotel(hotel);
         session.save(hotel);
-        System.out.println("Apartment successfully create. Apartment details:  " + apartment);
+        log.info("Apartment successfully create. Apartment details:  " + apartment);
         return apartment;
     }
 
-    public Apartment getApartmentById(Integer hotelId, Integer apartmentId) {
+    @Override
+    public Apartment getApartmentById(Integer apartmentId, Integer hotelId) {
         Session session = getCurrentSession();
         Hotel hotel = session.load(Hotel.class, hotelId);
-        hotel.getApartmentList().get(apartmentId);
-        return hotel.getApartmentList().get(apartmentId);
+        List<Apartment> apartments = hotel.getApartmentList();
+        return apartments.stream()
+                .filter(apart -> apart.getId().equals(apartmentId))
+                .findFirst()
+                .orElseThrow(() -> new NoSuchElementException("apartment by id " + apartmentId + "not found"));
     }
+
 
     @Override
     public void removeApartment(Integer hotelId, Integer apartmentId) {
@@ -110,19 +118,14 @@ public class HotelDaoImpl implements HotelDao {
                 .findFirst()
                 .orElseThrow(() -> new NoSuchElementException("apartment by id " + apartmentId + "not found"));
         session.remove(apartment);
-
-
     }
 
     @Override
-    public void updateApartment(Integer hotelId, Integer apartmentId) {
+    public void updateApartment(Integer apartmentId, Integer hotelId, Apartment apartment) {
         Session session = getCurrentSession();
         Hotel hotel = session.load(Hotel.class, hotelId);
-        List<Apartment> apartments = hotel.getApartmentList();
-        Apartment apartment = apartments.stream()
-                .filter(apart -> apart.getId().equals(apartmentId))
-                .findFirst()
-                .orElseThrow(() -> new NoSuchElementException("apartment by id " + apartmentId + "not found"));
+        apartment.setId(apartmentId);
+        apartment.setHotel(hotel);
         session.update(apartment);
 
     }
@@ -131,8 +134,7 @@ public class HotelDaoImpl implements HotelDao {
     public List<Apartment> apartmentList(Integer id) {
         Session session = getCurrentSession();
         Hotel hotel = session.load(Hotel.class, id);
-        List<Apartment> apartments = hotel.getApartmentList();
-        return apartments;
+        return hotel.getApartmentList();
     }
 
 }

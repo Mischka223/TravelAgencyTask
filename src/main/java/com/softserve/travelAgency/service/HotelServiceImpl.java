@@ -1,11 +1,11 @@
 package com.softserve.travelAgency.service;
 
+import com.softserve.travelAgency.dao.HotelDao;
 import com.softserve.travelAgency.model.Apartment;
 import com.softserve.travelAgency.model.Country;
 import com.softserve.travelAgency.model.Hotel;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.softserve.travelAgency.dao.HotelDao;
 
 import java.util.List;
 
@@ -49,25 +49,29 @@ public class HotelServiceImpl implements HotelService {
         return hotelDao.createApartment(id, apartment);
     }
 
-    public Apartment getApartmentById(Integer hotelId, Integer apartmentId) {
-        return hotelDao.getApartmentById(hotelId, apartmentId);
+    @Override
+    public Apartment getApartmentById(Integer apartmentId, Integer hotelId) {
+        return hotelDao.getApartmentById(apartmentId, hotelId);
     }
+
 
     public void removeApartment(Integer hotelId, Integer apartmentId) {
         hotelDao.removeApartment(hotelId, apartmentId);
     }
 
-    public void updateApartment(Integer hotelId, Integer apartmentId) {
-        hotelDao.updateApartment(hotelId, apartmentId);
-    }
-
-    @Override
-    public List<Country> countryList() {
-        return hotelDao.countryList();
+    public void updateApartment(Integer apartmentId, Integer hotelId, Apartment apartment) {
+        hotelDao.updateApartment(apartmentId, hotelId, apartment);
     }
 
     @Override
     public List<Apartment> apartmentList(Integer id) {
         return hotelDao.apartmentList(id);
     }
+
+    @Override
+    public List<Country> countryList() {
+        return hotelDao.countryList();
+    }
 }
+
+

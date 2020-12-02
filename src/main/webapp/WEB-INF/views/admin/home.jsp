@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Edit hotel</title>
+    <title>Home</title>
 </head>
 
 <body>
@@ -49,27 +49,22 @@
         border: 5px solid firebrick;
     }
 </style>
-<div>
-    <ul>
-        <a href="/admin/home"> Home </a>
-    </ul>
-</div>
+
 <br>
 <hr>
 <div class="container mt-5 mb-5">
-    <h1>Edit Hotel</h1>
-    <jsp:useBean id="obj" class="com.softserve.travelAgency.model.Country" scope="page"/>
-    <form action="/admin/edit/hotel/<c:out value="${hotel.id}"/>" method="post">
-        <input type="text" name="name" placeholder="Enter Hotel name" value="<c:out value="${hotel.name}"/> " class="form-control"><br>
+    <h1>Select country</h1>
+
+    <form action="/list/hotel" method="get">
         <select name="country">
             <option>Countries</option>
             <c:forEach var="country" items="${countries}">
-                <option><c:out value="${country.name}"/></option>
+            <option value="<c:out value="${country}"/>"><c:out value="${country}"/></option>
             </c:forEach>
         </select>
-        <input type="text" name="description" placeholder="Enter hotel description" value="<c:out value="${hotel.description}"/>" class="form-control"><br>
-        <button type="submit" class="btn btn-success">Update hotel</button>
+        <button type="submit"   class="btn-link">Edit</button>
     </form>
+
 </div>
 
 </body>

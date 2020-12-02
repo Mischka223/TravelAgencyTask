@@ -17,13 +17,14 @@ public interface HotelService {
 
     List<Hotel> listHotels();
 
+
     Apartment createApartment(Integer id, Apartment apartment);
 
-    Apartment getApartmentById(Integer hotelId, Integer apartmentId);
+    Apartment getApartmentById(Integer apartmentId, Integer hotelId);
 
     void removeApartment(Integer hotelId, Integer apartmentId);
 
-    void updateApartment(Integer hotelId, Integer apartmentId);
+    void updateApartment(Integer apartmentId, Integer hotelId, Apartment apartment);
 
     List<Country> countryList();
 

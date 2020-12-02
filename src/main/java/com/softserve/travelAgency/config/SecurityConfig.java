@@ -1,6 +1,8 @@
 package com.softserve.travelAgency.config;
 
 
+import com.softserve.travelAgency.model.Permission;
+import com.softserve.travelAgency.model.Role;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -11,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -21,14 +24,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/admin/**")
-                .hasRole("Admin")
-                .antMatchers("/user/**")
-                .hasAnyRole("Admin", "User")
+                .antMatchers("/admin/**").hasAuthority(Permission.PERSON_WRITE.getPermission())
+                .antMatchers("/**").hasAuthority(Permission.PERSON_READ.getPermission())
                 .anyRequest()
                 .authenticated()
                 .and()
-                .formLogin();
+                .formLogin().loginPage("/login/page").permitAll()
+                .defaultSuccessUrl("/home").and()
+                .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/login/logout", "POST"))
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .deleteCookies("JSESSIONID")
+                .logoutSuccessUrl("/login/page");
 
     }
 
@@ -39,12 +47,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 (User.builder()
                         .username("Manager")
                         .password("{noop}admin1")
-                        .roles("Admin")
+                        .authorities(Role.ADMIN.getAuthorities())
                         .build(),
                         User.builder()
                                 .username("User")
                                 .password("{noop}user1")
-                                .roles("User")
+                                .authorities(Role.USER.getAuthorities())
                                 .build()
                 );
     }

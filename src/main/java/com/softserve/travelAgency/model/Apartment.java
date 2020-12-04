@@ -17,7 +17,6 @@ public class Apartment {
     private int price;
 
 
-
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;

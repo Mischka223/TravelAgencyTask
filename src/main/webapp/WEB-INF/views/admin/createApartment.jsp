@@ -26,7 +26,7 @@
         </select>
         <br>
         <br>
-            <input type="text" name="price" placeholder="Enter apartment price " class="form-control">
+        <input type="text" name="price" placeholder="Enter apartment price " class="form-control">
         <br>
         <button type="submit" class="btn btn-success">Add apartment</button>
     </form>

@@ -41,12 +41,12 @@
                             <button type="submit" class="btn btn-sm btn-outline-secondary">View</button>
                         </form>
                         <c:if test="${hasWritePermission}">
-                        <form action="/admin/edit/hotel/<c:out value="${hotel.id}"/>" method="get">
-                            <button type="submit" class="btn btn-sm btn-outline-secondary">Edit</button>
-                        </form>
-                        <form action="/admin/delete/hotel/<c:out value="${hotel.id}"/>" method="post">
-                            <button type="submit" class="btn btn-sm btn-outline-secondary">Delete</button>
-                        </form>
+                            <form action="/admin/edit/hotel/<c:out value="${hotel.id}"/>" method="get">
+                                <button type="submit" class="btn btn-sm btn-outline-secondary">Edit</button>
+                            </form>
+                            <form action="/admin/delete/hotel/<c:out value="${hotel.id}"/>" method="post">
+                                <button type="submit" class="btn btn-sm btn-outline-secondary">Delete</button>
+                            </form>
                         </c:if>
                     </div>
                 </div>

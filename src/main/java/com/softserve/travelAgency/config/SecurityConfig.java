@@ -46,18 +46,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new InMemoryUserDetailsManager
                 (User.builder()
                         .username("Manager")
-                        .password("{noop}admin1")
+                        .password("{noop}hdjdd333555677345")
                         .authorities(Role.ADMIN.getAuthorities())
                         .build(),
                         User.builder()
                                 .username("User")
-                                .password("{noop}user1")
+                                .password("{noop}us44gtsq2245683")
                                 .authorities(Role.USER.getAuthorities())
                                 .build()
                 );
     }
 
-    protected PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(12);
-    }
 }

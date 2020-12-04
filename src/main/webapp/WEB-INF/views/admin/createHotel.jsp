@@ -2,71 +2,28 @@
 
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>add hotel</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Add hotel</title>
+    <link rel='stylesheet' href='/webjars/bootstrap/4.5.2/css/bootstrap.min.css'>
 </head>
 <body>
-<style>
-    select {
-        text-align: center;
-        align-content: center;
-        padding: 6px;
-        margin-left: 580px;
-        border: 10px solid gray;
-    }
-
-    h1 {
-        color: gray;
-        text-align: center;
-    }
-
-    hr {
-        margin: 40px;
-    }
-
-    li {
-        display: inline;
-        padding: 10px;
-        float: right;
-
-    }
-
-    input {
-        text-align: center;
-        align-content: center;
-        padding: 6px;
-        margin-left: 580px;
-        border: 10px solid gray;
-    }
-
-    button {
-        border: 5px solid gray;
-        margin-left: 580px;
-    }
-
-    button:hover {
-        border: 5px solid firebrick;
-    }
-</style>
-<div>
-    <ul>
-        <a href="/home"> Home </a>
-    </ul>
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+    <nav class="my-2 my-md-0 mr-md-3">
+        <a class="p-2 text-dark" href="/home">Home</a>
+        <a class="p-2 text-dark" href="/list/hotel">Hotel list</a>
+    </nav>
 </div>
-<br>
-<hr>
 <div class="container mt-5 mb-5">
     <h1>Add Hotel</h1>
     <jsp:useBean id="obj" class="com.softserve.travelAgency.model.Country" scope="page"/>
     <form action="/admin/create/hotel" method="post">
-        <input type="text" name="name" placeholder="Enter Hotel name" class="form-control"><br>
+        <input type="text" name="name" placeholder="Enter Hotel name" class="form-control">
         <select name="country">
-            <option>Countries</option>
+            <option disabled selected>Counties</option>
             <c:forEach var="country" items="${countries}">
                 <option><c:out value="${country.name}"/></option>
             </c:forEach>
         </select>
-
         <input type="text" name="description" placeholder="Enter hotel description" class="form-control"><br>
         <button type="submit" class="btn btn-success">Add hotel</button>
     </form>

@@ -65,10 +65,4 @@ public class UserController {
         return "user/showHotel";
     }
 
-    @GetMapping("/hotel/{id}/apartments")
-    public String apartmentList(@PathVariable("id") Integer id, Model model) {
-        model.addAttribute("apartments", hotelService.apartmentList(id));
-        return "user/allApartmentInHotel";
-    }
-
 }

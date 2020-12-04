@@ -15,18 +15,17 @@ public class Apartment {
     private String typeOfApartment;
     @Column(name = "price")
     private int price;
-    @Column(name = "description")
-    private String description;
+
 
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
 
-    public Apartment(Integer id, String name, String description, int price) {
+    public Apartment(Integer id, String name, int price) {
         this.id = id;
         this.name = name;
-        this.description = description;
+
         this.price = price;
     }
 
@@ -65,14 +64,6 @@ public class Apartment {
         this.price = price;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public Hotel getHotel() {
         return hotel;
     }
@@ -88,7 +79,7 @@ public class Apartment {
                 ", name='" + name + '\'' +
                 ", typeOfApartment='" + typeOfApartment + '\'' +
                 ", price=" + price +
-                ", description='" + description + '\'' +
+                ", hotel=" + hotel +
                 '}';
     }
 }

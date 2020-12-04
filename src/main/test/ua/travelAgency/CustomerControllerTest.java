@@ -35,6 +35,19 @@ public class CustomerControllerTest {
         DefaultMockMvcBuilder builder = MockMvcBuilders.webAppContextSetup(this.wac);
         this.mockMvc = builder.build();
     }
+    private Hotel prepareHotel() {
+        Hotel hotelToSave = new Hotel();
+        hotelToSave.setCountry("Ukraine");
+        hotelToSave.setDescription("Description");
+        hotelToSave.setName("BankHotel");
+        return hotelToSave;
+    }
+    private Hotel updateHotel(Hotel hotel){
+        hotel.setCountry("Germany");
+        hotel.setDescription("Description1");
+        hotel.setName("SonataHotel");
+        return hotel;
+    }
 
     @Test
     public void addHotelTest() {
@@ -55,28 +68,15 @@ public class CustomerControllerTest {
     }
 
     @Test
-    public void addApartmentToHotel() {
+    public void updateHotelTest(){
         Hotel hotel = prepareHotel();
         Hotel hotelToAdd = hotelService.addHotel(hotel);
+        Hotel hotelToUpdate = updateHotel(hotelToAdd);
+        hotelService.updateHotel(hotelToUpdate);
 
-        Apartment apartment = prepareApartment();
-        hotelService.createApartment(hotelToAdd.getId(), apartment);
-
+        Hotel hotelFound = hotelService.getHotelById(hotelToUpdate.getId());
+        Assert.assertNotNull(hotelFound);
     }
 
-    private Apartment prepareApartment() {
-        Apartment apartment = new Apartment();
-        apartment.setDescription("Apartment Description");
-        apartment.setName("Apartment Name");
 
-        return apartment;
-    }
-
-    private Hotel prepareHotel() {
-        Hotel hotelToSave = new Hotel();
-        hotelToSave.setCountry("Ukraine");
-        hotelToSave.setDescription("Description");
-        hotelToSave.setName("BankHotel");
-        return hotelToSave;
-    }
 }

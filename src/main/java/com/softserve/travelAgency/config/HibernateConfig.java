@@ -25,7 +25,6 @@ public class HibernateConfig {
 
     public HibernateConfig(Environment environment) {
         this.environment = environment;
-
     }
 
     @Bean

@@ -88,10 +88,10 @@ public class HotelDaoImpl implements HotelDao {
     public Apartment createApartment(Integer id, Apartment apartment) {
         Session session = getCurrentSession();
         Hotel hotel = session.load(Hotel.class, id);
-        session.save(apartment);
         hotel.getApartmentList().add(apartment);
         apartment.setHotel(hotel);
         session.save(hotel);
+        session.save(apartment);
         log.info("Apartment successfully create. Apartment details:  " + apartment);
         return apartment;
     }

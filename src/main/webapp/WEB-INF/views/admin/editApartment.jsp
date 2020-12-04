@@ -2,60 +2,19 @@
 
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Edit apartment</title>
+    <link rel='stylesheet' href='/webjars/bootstrap/4.5.2/css/bootstrap.min.css'>
 </head>
 
 <body>
-<style>
-    select {
-        text-align: center;
-        align-content: center;
-        padding: 6px;
-        margin-left: 580px;
-        border: 10px solid gray;
-    }
 
-    h1 {
-        color: gray;
-        text-align: center;
-    }
-
-    hr {
-        margin: 40px;
-    }
-
-    li {
-        display: inline;
-        padding: 10px;
-        float: right;
-
-    }
-
-    input {
-        text-align: center;
-        align-content: center;
-        padding: 6px;
-        margin-left: 580px;
-        border: 10px solid gray;
-    }
-
-    button {
-        border: 5px solid gray;
-        margin-left: 580px;
-    }
-
-    button:hover {
-        border: 5px solid firebrick;
-    }
-</style>
-<div>
-    <ul>
-        <a href="/admin/home"> Home </a>
-    </ul>
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+    <nav class="my-2 my-md-0 mr-md-3">
+        <a class="p-2 text-dark" href="/home">Home</a>
+        <a class="p-2 text-dark" href="/list/hotel">Hotel list</a>
+    </nav>
 </div>
-<br>
-<hr>
 <div class="container mt-5 mb-5">
     <h1>Edit Apartment</h1>
 
@@ -73,13 +32,10 @@
         </select>
         <input type="text" name="price" value="<c:out value="${apartment.price}"/>" placeholder="Enter apartment price"
                class="form-control"><br>
-        <input type="text" name="description"  value="<c:out value="${apartment.description}"/>" placeholder="Enter apartment description"
-               class="form-control"><br>
 
-        <button type="submit" class="btn btn-success">Update hotel</button>
+        <button type="submit" class="btn btn-success">Edit apartment</button>
     </form>
 </div>
-
 </body>
 </body>
 </html>

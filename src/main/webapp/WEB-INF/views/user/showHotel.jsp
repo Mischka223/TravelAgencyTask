@@ -11,6 +11,7 @@
     .col-md-4 {
         display: inline-flex;
         justify-content: space-around;
+        margin-left: -10px;
     }
 </style>
 <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
@@ -46,7 +47,7 @@
                                   method="post">
                                 <button type="submit" class="btn btn-sm btn-outline-secondary">Delete</button>
                                 <br>
-                                <label type="text">Price per day: <c:out value="${apartment.price}"/> </label>
+                                <label type="text">Price per day: <c:out value="${apartment.price}"/> $</label>
                             </form>
 
                         </c:if>

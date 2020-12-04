@@ -48,6 +48,8 @@
                                 <button type="submit" class="btn btn-sm btn-outline-secondary">Delete</button>
                             </form>
                         </c:if>
+                        <p>
+                        <label type="text">Country <c:out value="${hotel.country}"/> </label>
                     </div>
                 </div>
             </div>

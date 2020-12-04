@@ -47,10 +47,11 @@
                                   method="post">
                                 <button type="submit" class="btn btn-sm btn-outline-secondary">Delete</button>
                                 <br>
+                                </c:if>
                                 <label type="text">Price per day: <c:out value="${apartment.price}"/> $</label>
                             </form>
 
-                        </c:if>
+
                     </div>
                     <small class="text-muted"></small>
                 </div>
